@@ -1,0 +1,356 @@
+/* ===================== 全局样式重置 ===================== */
+* {
+    /* 统一盒模型，避免padding/border影响宽高计算 */
+    box-sizing: border-box;
+    /* 清除默认边距，统一页面样式 */
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: sans-serif;
+    background-color: #f2f2f2;
+    /* 修复文字颜色覆盖问题：主体文字用深灰色，避免和白色背景冲突 */
+    color: #333;
+}
+
+/* ===================== 基础布局容器 ===================== */
+/* 固定宽度的页面容器：限制页面整体宽度，居中显示 */
+.container {
+    width: 1500px; /* 固定宽度（可根据需求调整，比如1400px） */
+    margin: 0 auto; /* 水平居中 */
+}
+
+/* 内容容器样式（修复冗余嵌套） */
+.content-container {
+    width: 100%;
+}
+
+.content {
+    width: 100%;
+}
+
+/* ===================== 导航栏样式 ===================== */
+/* 桌面端导航栏 */
+nav {
+    width: 100%;
+    background: #202c45;
+    padding: 0 50px;
+    /* 清除浮动影响，替代多个clear:both的div */
+    overflow: hidden;
+}
+
+/* 品牌logo */
+nav h1.brand {
+    float: left;
+    padding: 20px 20px;
+}
+
+nav h1.brand a {
+    color: #fff;
+    text-decoration: none;
+}
+
+/* 导航菜单 */
+nav ul {
+    float: right;
+}
+
+nav ul li {
+    list-style: none;
+    display: inline-block;
+    padding: 20px 30px;
+    transition: background-color 0.5s ease;
+}
+
+nav ul li a {
+    color: #fff;
+    font-size: 30px;
+    text-decoration: none;
+}
+
+/* 菜单hover效果 */
+nav ul li:hover {
+    background: #f2184f;
+}
+
+/* 移动端响应式导航栏（默认隐藏） */
+.responsive-bar {
+    width: 100%;
+    background: #202c45;
+    padding: 10px 30px;
+    overflow: hidden;
+    /* 默认隐藏，仅在移动端显示 */
+    display: none;
+}
+
+.responsive-bar h3 {
+    float: left;
+    padding: 3px 0;
+    color: #fff;
+}
+
+.responsive-bar h3 a {
+    color: #fff;
+    text-decoration: none;
+}
+
+.responsive-bar h4.menu {
+    float: right;
+    margin: 0;
+    padding: 5px 10px;
+    color: #fff;
+    background: #f2184f;
+    text-transform: uppercase;
+    cursor: pointer;
+}
+
+/* ===================== 响应式媒体查询（移动端适配） ===================== */
+@media (max-width: 900px) {
+    /* 隐藏桌面端导航 */
+    nav {
+        display: none;
+        padding: 0;
+    }
+
+    /* 显示移动端导航 */
+    .responsive-bar {
+        display: block;
+    }
+
+    /* 移动端导航内部布局调整 */
+    nav h1.brand {
+        display: none;
+        float: none;
+    }
+
+    nav ul {
+        float: none;
+    }
+
+    nav ul li {
+        display: block;
+        text-align: center;
+        background: #141e33;
+        padding: 15px 20px;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    }
+}
+
+/* ===================== 主体内容区域 ===================== */
+/* 页面头部 */
+.page-header {
+    text-align: center;
+    margin-bottom: 2rem;
+    padding: 25px 0px;
+}
+
+.page-header h1 {
+    color: #202c45;
+    margin-bottom: 0.5rem;
+    font-size: 2rem;
+}
+
+.page-header p {
+    color: #666;
+    font-size: 1rem;
+}
+
+/* 核心功能区域 */
+.feature-section {
+    padding: 3rem 0;
+    margin-bottom: 2rem;
+}
+
+.feature-card-wrap {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2rem;
+    max-width: 1200px;
+    margin: 0 auto; /* 居中显示 */
+}
+
+/* 功能卡片核心样式（按需求调整） */
+.feature-card {
+    background-color: var(--feature-card-bg); /* 区分度底色 */
+    padding: 2rem;
+    border-radius: 10px; /* 明确指定10px圆弧，避免依赖变量 */
+    box-shadow: var(--shadow);
+    border: 2px solid #202c45; /* 明确指定边框颜色，不依赖变量 */
+    flex: 1;
+    min-width: 300px;
+    transition: transform 0.3s ease;
+}
+
+.feature-card:hover {
+    transform: translateY(-5px);
+}
+
+.feature-card h3 {
+    color: var(--primary-color);
+    font-size: 1.4rem;
+    margin-bottom: 1rem;
+    padding-bottom: 0.5rem;
+    border-bottom: 1px solid var(--gray-light);
+}
+
+.feature-card p {
+    margin-bottom: 1.5rem;
+    color: var(--gray-dark);
+}
+
+.feature-info {
+    background-color: var(--white);
+    padding: 1.5rem;
+    border-radius: var(--radius);
+}
+
+.feature-info p {
+    margin-bottom: 0.8rem;
+    font-size: 0.95rem;
+}
+
+.feature-info p:last-child {
+    margin-bottom: 0;
+}
+
+.section-title {
+    text-align: center;
+    font-size: 2rem;
+    color: var(--primary-color);
+    margin-bottom: 2rem;
+}
+
+/* 图片占位符样式 */
+.img-placeholder {
+    background-color: #e0e0e0;
+    padding: 250px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    font-weight: bold;
+    color: #666;
+}
+
+/* ===================== 轮播图样式 ===================== */
+/* 轮播图容器（占满右栏） */
+.carousel {
+    margin: 15px auto;
+    width: 80%;
+    height: 600px; /* 和原图片占位符高度一致，保持布局 */
+    position: relative;
+    overflow: hidden; /* 隐藏超出容器的图片 */
+    background-color: #e0e0e0;
+    border-radius: 10px;
+}
+
+/* 轮播图图片列表 */
+.carousel-slides {
+    width: 100%;
+    height: 100%;
+}
+
+/* 单个幻灯片（默认隐藏） */
+.carousel-slide {
+    width: 100%;
+    height: 100%;
+    display: none;
+}
+
+/* 激活的幻灯片（显示） */
+.carousel-slide.active {
+    display: block;
+}
+
+/* 轮播图图片（自适应容器） */
+.carousel-slide img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* 保持图片比例，填充容器 */
+}
+
+/* 切换箭头样式 */
+.carousel-prev, .carousel-next {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 50px;
+    height: 50px;
+    background-color: rgba(155, 157, 167, 0.5);
+    color: #fff;
+    border: none;
+    border-radius: 50%; /* 圆形按钮，更美观 */
+    font-size: 20px;
+    cursor: pointer;
+    z-index: 10;
+    display: flex; /* 让图标居中 */
+    align-items: center;
+    justify-content: center;
+    padding: 0; /* 清除默认内边距 */
+}
+
+/* 左箭头位置 */
+.carousel-prev {
+    left: 10px;
+}
+
+/* 右箭头位置 */
+.carousel-next {
+    right: 10px;
+}
+
+/* 箭头hover效果 */
+.carousel-prev:hover, .carousel-next:hover {
+    background-color: rgba(48, 47, 53, 0.8);
+}
+
+/* ===================== 页脚样式 ===================== */
+/* 页面底部（通用） */
+.page-footer {
+    background-color: var(--primary-color);
+    color: var(--white);
+    text-align: center;
+    padding: 1.5rem 0;
+    border-radius: var(--radius);
+}
+
+.page-footer p {
+    opacity: 0.9;
+}
+
+/* 自定义页脚样式 */
+.footer {
+    background-color: #333333;
+    color: #ffffff;
+    padding: 20px 30px;
+    font-size: 14px;
+    line-height: 1.6;
+    /* 确保页脚在内容下方 */
+    clear: both;
+}
+
+/* 页脚链接 */
+.footer-links {
+    margin-bottom: 15px;
+}
+
+.footer-links a {
+    color: #ffffff;
+    text-decoration: none;
+    margin-right: 20px;
+}
+
+.footer-links a:hover {
+    text-decoration: underline;
+}
+
+/* 引用说明 */
+.footer-citation {
+    margin-bottom: 15px;
+}
+
+/* 版权信息 */
+.footer-copyright {
+    text-align: center;
+}
