@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>web serve</title>
+    <link rel="stylesheet" type="text/css" href="style.css">
+</head>
+<body>
+
+    <!-- 内容容器（修复原代码冗余嵌套问题） -->
+    <div class="content-container">
+        <div class="content">
+            <!-- 主体内容容器：左栏+右栏 -->
+                <!-- 导航栏区域 -->
+            <div class="container">
+                    <nav>
+        <!-- 品牌logo -->
+        <h1 class="brand"><a href="#">PocketDTAGen</a></h1>
+        <!-- 导航菜单 -->
+        <ul>
+            <li><a href="https://ppppuppet.github.io/home">Home</a></li>
+            <li><a href="https://ppppuppet.github.io/serve-one">serve one</a></li>
+            <li><a href="https://ppppuppet.github.io/serve-two">Serve two</a></li>
+            <li><a href="https://ppppuppet.github.io/tutorial/">tutorial</a></li>
+        </ul>
+    </nav>
+
+    <!-- 移动端响应式导航栏 -->
+    <div class="responsive-bar">
+        <h3 class="brand"><a href="#">PocketDTAGen</a></h3>
+        <h4 class="menu">Menu</h4>
+    </div>
+
+
+
+
+                    <!-- 标语 -->
+                    <header class="page-header">
+                    <h1>Welcome to use PocketDTAGen!</h1>
+                    <p>Drug-Target Affinity Prediction Serve</p>
+                    </header>
+
+                <!-- 右栏：图片展示区 -->
+                <div class="right-column">
+                    <!-- 轮播图容器 -->
+                    <div class="carousel">
+                        <!-- 轮播图图片列表 -->
+                        <div class="carousel-slides">
+                            <!-- 图片1 -->
+                            <div class="carousel-slide active">
+                                <img src="./1.jpg" alt="分子结构1">
+                            </div>
+                            <!-- 图片2 -->
+                            <div class="carousel-slide">
+                                <img src='./2.png' alt="分子结构2">
+                            </div>
+                        </div>
+                        
+                        <!-- 左切换箭头 -->
+                        <button class="carousel-prev">
+                            <i class="fas fa-chevron-left"><</i>
+                        </button>
+                        <!-- 右切换箭头 -->
+                        <button class="carousel-next">
+                            <i class="fas fa-chevron-right">></i>
+                        </button>
+                    </div>
+            </div>
+
+                <!-- 平台核心功能（调整为左右布局） -->
+    <section class="feature-section">
+        <div class="container">
+            <h2 class="section-title">Core Features</h2>
+            <div class="feature-card-wrap">
+                <!-- 功能1：亲和力预测 -->
+                <div class="feature-card">
+                    <h3>Affinity Prediction</h3>
+                    <p><strong>Given</strong> a protein target and a candidate small molecule, our model performs <strong>structure-aware prediction of pIC50-based drug–target affinity​ </strong> by jointly encoding pocket-level protein features and 3D ligand conformations.
+                    <div class="feature-info">
+                        <p><strong>Input</strong> : Drug(Ligand SMILES/SDF)+ Target(UniProt/PDB/CIF)</p>
+                        <p><strong>Output</strong> : pIC50 Affinity value (2 decimal places)</p>
+                        <p><strong>Mode</strong> : Demo/Advanced</p>
+                    </div>
+                </div>
+                <!-- 功能2：分子生成与优化 -->
+                <div class="feature-card">
+                    <h3>Molecular generation & lead optimization</h3>
+                    <p>
+                        <strong>Given</strong> a target and a known binder (lead compound), our model generates analogues with potentially improved affinity and better drug-likeness.
+                    </p>
+                    <div class="feature-info">
+                        <p><strong>Input</strong> : Target(UniProt/PDB/CIF)+ Reference drug(Ligand SMILES/SDF)</p>
+                        <p><strong>Output</strong> : generated SMILES、2D ligand conformations、predicted pIC50、ΔpIC50、LogP、SAS、QED</p>
+                        <p><strong>Mode</strong> : Demo/Advanced</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+        </div>
+    </div>
+
+    <!-- 页脚区域 -->
+    <footer class="footer">
+        <!-- 页脚导航链接 -->
+        <div class="footer-links">
+            <a href="#">Github</a>
+            <a href="#">Paper</a>
+            <a href="#">Contact Us</a>
+        </div>
+        <!-- 引用说明 -->
+        <p class="footer-citation">
+            If you found useful, please consider citing our paper:<br>
+        </p>
+        <!-- 版权信息 -->
+        <p class="footer-copyright">
+            Copyright © 2023 CSU Bioinformatics Group. All rights reserved.
+        </p>
+    </footer>
+    
+    <!-- 引入jQuery库 -->
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    <script type="text/javascript">
+        // 页面加载完成后执行
+        $(document).ready(function(){
+            // 移动端菜单点击事件：切换导航栏显示/隐藏
+            $(".menu").click(function(){
+                $("nav").slideToggle(500); // 500ms动画时长
+            });
+        
+
+            // 轮播图功能
+            const carouselSlides = $('.carousel-slide');
+            const totalSlides = carouselSlides.length;
+            let currentSlide = 0;
+            let autoPlayTimer = null;
+
+            // 切换到指定幻灯片
+            function goToSlide(index) {
+                //边界值校验，确保index在有效范围内
+                if (index < 0 ) index = totalSlides - 1;
+                if (index >= totalSlides)index = 0;
+                
+                // 隐藏所有幻灯片
+                carouselSlides.removeClass('active');
+                
+                // 显示指定幻灯片
+                carouselSlides.eq(index).addClass('active');
+                currentSlide = index;
+            }
+
+            // 下一张（用于自动播放）
+            function nextSlide() {
+                let nextSlide = currentSlide + 1;
+                if (nextSlide >= totalSlides) nextSlide = 0;
+                goToSlide(nextSlide);
+            }
+
+            // 启动自动播放（3秒切换一次，可修改数值）
+            function startAutoPlay() {
+                if (autoPlayTimer) clearInterval(autoPlayTimer);
+                autoPlayTimer = setInterval(nextSlide, 3000);
+            }
+
+            // 暂停自动播放（鼠标 hover 轮播图时暂停）
+            function pauseAutoPlay() {
+                if (autoPlayTimer){
+                    clearInterval(autoPlayTimer);
+                    autoPlayTimer = null;
+                }
+            }
+
+            // 左箭头点击（上一张）
+            $('.carousel-prev').click(function() {
+                pauseAutoPlay();
+                let nextSlide = currentSlide - 1;
+                if (nextSlide < 0) nextSlide = totalSlides - 1;
+                goToSlide(nextSlide);
+                startAutoPlay(); // 暂停后重新启动
+            });
+
+            // 右箭头点击（下一张）
+            $('.carousel-next').click(function() {
+                pauseAutoPlay();
+                let nextSlide = currentSlide + 1;
+                if (nextSlide >= totalSlides) nextSlide = 0;
+                goToSlide(nextSlide);
+                startAutoPlay(); // 暂停后重新启动
+            });
+
+            // 初始化：启动自动播放 + 鼠标hover暂停
+            startAutoPlay(0);
+            startAutoPlay();
+            $('.carousel').hover(pauseAutoPlay, startAutoPlay);
+
+        });
+    </script>
+
+    
+</div>
+</body>
+</html>
